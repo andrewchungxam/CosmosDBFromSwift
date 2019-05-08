@@ -86,13 +86,15 @@ https://codemilltech.com/connecting-to-cosmos-without-conx-strings/
 
 ---------
 
-Templates to help speed up your development.
+### Azure.Mobile
+Templates and SDKs to help speed up your development.
+
 AzureMobile is a project started by two Microsoft employees (@naterickard and @colbylwilliams): <br />
 https://github.com/Azure/Azure.Mobile <br />
 https://github.com/Azure/Azure.iOS <br />
 https://github.com/Azure/Azure.Android <br />
 
-It's an open source project on the official Azure github page but it's not an official "product" of Microsoft so there isn't an SLA associate with it.  That said, it's all open source which you can of course look through; many many partners / customers are looking very closely at it, and either use it directly or use it for their inspiration for products they build off of it.
+This is an open source project on the official Azure github page but it's not an official "product" of Microsoft so there is not an SLA associate with it.  That said, it's all open source which you can of course look through; many parties including partners, customers, and internal teams are taking hard looks at it, and are either using it directly or using it for their inspiration for products they build off of it.
 
 There are a lot of packages, and there are a variety of ways to use the packages.
 
