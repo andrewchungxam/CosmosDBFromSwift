@@ -100,9 +100,11 @@ There are a lot of packages, and there are a variety of ways to use the packages
 
 If you notice, there is a way to add the Master Key of your Function in Azure.Data (which would put the master string in your mobile app); however, this is for convenience when quickly developing samples and is not recommended to ship these values in a plist in production apps.  (Again, the principle of not putting your master key in the mobile app still stands for production scenarios.)
 
-Instead - the package AzureAuth (which is included in both the iOS and Android SDKs) enables authentication with Azure AD, Facebook, Google, Twitter, and Microsoft accounts. 
+Instead - use the Authentication provider of your choice.  And thoser Auth providers often will provide SDKs.  For example, you can ues either of the two Azure AD SDKs mentioned above (ADAL or MSAL).  Then AzureAuth of this project will work in tandem - you'll just need the access token that you will get back using the Authentication provider of your choice.
 
-Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click from the Github portal, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  Ie. Transfer data from CosmosDB to the Mobile app or simply use it as a permissions broker as described in Method A or B.  (Note - if your ARM template fails for some reason, try deploying it again with all the same values you did the first time and without deleting anything.)
+Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click from the Github portal, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  NOTE - at this point, you need to use the C# version (Not Javascript, not C# Script).  There will be code pre-loaded for the Function to be used as a permissions broker as described in Method A or B.  (Note - if your ARM template fails for some reason, try deploying it again with all the same values you did the first time and without deleting anything.)
+
+Finally, there is a lot of code in the AzureData module that makes it convenient and easy to access and write data to your CosmosDB; there is also the ability to enable offline capabilities and cache data locally.
 
 ---------
 
