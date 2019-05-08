@@ -4,7 +4,9 @@ General Guidance around Accessing CosmosDB Securely From Swift
 If you're developing a mobile app and looking through the CosmosDB Docs around security, you may notice that most of those documents seem to be referring to accessings CosmosDB from a web service.  You would be correct - most of those assume that you're accessing CosmosDB from a web service.
 
 To translate to the mobile world - you might build something like this:
+```
 Mobile -> Middleware web app -> CosmosDB
+```
 
 Having the middleware as an intermediary is a recommended pattern in an enterprise app - it enhances control, enhances the customizability, add various load-balancing functionality. (Consider Azure Functions, Azure App Service with a ASP.NET Core or ASP.NET Framework app, or an Azure API App).  And then if you want better monitoring, control, custom policies, visibility, and security...you can add on top of that a services like Azure API Management.
 
