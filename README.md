@@ -8,14 +8,14 @@ To translate to the mobile world - you might build something like this:
 Mobile -> Middleware web app -> CosmosDB
 ```
 
-Having the middleware as an intermediary is a recommended pattern in an enterprise app - it enhances control, enhances the customizability, add various load-balancing functionality. (Consider Azure Functions, Azure App Service with a ASP.NET Core or ASP.NET Framework app, or an Azure API App).  And then if you want better monitoring, control, custom policies, visibility, and security...you can add on top of that a services like Azure API Management.
+Having the middleware as an intermediary is a recommended pattern in an enterprise app - it enhances control, enhances the customizability, adds various load-balancing functionality, etc. (You might consider Azure Functions, Azure App Service with a ASP.NET Core or ASP.NET Framework app, or an Azure API App).  And then if you want better monitoring, control, custom policies, visibility, and security...you can even add on top of that, a services like Azure API Management.
 
-The thing to note is that CosmosDB can define specific users and user permissions which are accessible via REST.  
+Secondly, one thing to note is that CosmosDB can define specific users and user permissions which are accessible via REST to access specific collections.  
 Endpoints like this: <br />
 https://docs.microsoft.com/en-us/rest/api/cosmos-db/create-a-user<br />
 https://docs.microsoft.com/en-us/rest/api/cosmos-db/create-a-permission<br />
 
-And further described here:<br />
+This is more accessibly described here: (the document is very information in nature but very clear)<br />
 https://codemilltech.com/gimme-the-data-cosmos-db-permissions/  (The author is a Microsoft employee/ Azure+Xamarin evangelist)
 
 You can see the official docs here:<br />
@@ -24,7 +24,7 @@ https://docs.microsoft.com/en-us/azure/cosmos-db/database-security<br />
 
 You can also access CosmosDB with a MasterKey string - this MasterKey would be something you'd not want in your mobile client app, instead in your Azure App Service (ie the middeleware).  And as a next step, you can futher secure that, via KeyVault which has additional logging and security features.
 
-One of the ideas you'll see recurring is that you want to avoid coding confidential strings in your moible apps -- in case malicious actors get access to your phone/app, decompile them, and having access to your confidential string.
+One of the ideas you'll see recurring below is that you want to avoid coding confidential strings into your mobile apps -- in case malicious actors get access to your phone/app, decompile them, and having access to your confidential string.
 
 ---------
 
@@ -53,25 +53,25 @@ So in Method A - there are two SDKs that are available for you to use.
 ADAL: https://github.com/AzureAD/azure-activedirectory-library-for-objc <br />
 MSAL: https://github.com/AzureAD/microsoft-authentication-library-for-objc <br />
 
-If you're using Azure AD - both SDKs are fine for you to use; note note the MSAL still says "Preview", but in the further notes, you'll see on github the following:
+If you're using Azure AD - both SDKs are fine for you to use; note the MSAL still says "Preview", but you'll see on Github the following:
 
 These libraries are suitable to use in a production environment. We provide the same production level support for these libraries as we do our current production libraries. During the preview we reserve the right to make changes to the API, cache format, and other mechanisms of this library without notice which you will be required to take along with bug fixes or feature improvements This may impact your application. For instance, a change to the cache format may impact your users, such as requiring them to sign in again and an API change may require you to update your code. When we provide our General Availability release later, we will require you to update your application to our General Availabilty version within six months to continue to get support.
 
-Informally, MSAL is where insiders will say, use this library, it's where there is a lot of energy/attention for future investment and also you can use it for both Azure AD and Azure B2C.
+Informally speaking, MSAL is where insiders will say, use this library; it's where there is a lot of energy/attention for future investment and importantly also you can use it for both Azure AD and Azure B2C where as ADAL cannot be used with Azure B2C.
 
 Want to see examples? Take a look here: <br />
 ADAL: https://azure.microsoft.com/en-us/resources/samples/active-directory-ios/ <br />
-MSAL: https://github.com/Azure-Samples/active-directory-ios-swift-native-v2 <br />
+MSAL: https://github.com/Azure-Samples/active-directory-ios-swift-native-v2  <br />
 
-Now - you'll be needing that Middleware.  If you're not sure which one to use - try using Azure Functions as a first step.
+Now - you'll be needing that Middleware.  If you're not sure which one to use - try using Azure Functions.
 
-Searching for the terms: Functions and Azure AD will turn up a lot.
+Searching for the terms: Functions and Azure AD will turn up a lot in terms of helpful documetns.
 
-The best walk through I could find is with Azure AD B2C + Xamarin (even if you're not specifically using B2C or Xamarin - it might be a worth looking through as it does a pretty solid job walking through the fundamentals of the design): <br />
+One of the clearest walkthroughs I found is with Azure AD B2C + Xamarin (even if you're not specifically using B2C or Xamarin - it might be a worth looking through as it does a pretty solid job walking through the fundamentals of the design): <br />
 https://codemilltech.com/adding-azure-ad-b2c-authentication-to-azure-functions/
 
 And also this example from one of the Xamarin evangelists: <br />
-https://github.com/brminnick/XamList  (He uses different technology on DB side - but you're looking at this to look at the Functions piece.)
+https://github.com/brminnick/XamList  (He uses different technology on the DB side - but you're looking at this to look at the Functions piece.)
 
 And also the following example from the actual documentation: <br />
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2 <br />
@@ -94,13 +94,13 @@ https://github.com/Azure/Azure.Mobile <br />
 https://github.com/Azure/Azure.iOS <br />
 https://github.com/Azure/Azure.Android <br />
 
-This is an open source project on the official Azure github page but it's not an official "product" of Microsoft so there is not an SLA associate with it.  That said, it's all open source which you can of course look through; many parties including partners, customers, and internal teams are taking hard looks at it, and are either using it directly or using it for their inspiration for products they build off of it.
+This is an open source project on the official Azure github page but it's not an official "product" of Microsoft so there is not an SLA associate with it.  That said, it's all open source which you can of course look through; many parties including partners, customers, and internal teams are taking hard looks at it, and are either using it directly for their apps or using it for their inspiration for products they build off of it.
 
 There are a lot of packages, and there are a variety of ways to use the packages.
 
-If you notice, there is a way to add the Master Key of your Function in Azure.Data (which would put the master string in your mobile app); however, this is for convenience when quickly developing samples and is not recommended to ship these values in a plist in production apps.  (Again, the principle of not putting your master key in the mobile app still stands for production scenarios.)
+One note - if you click around the project you might notice that there is a way to add the Master Key of your Function in Azure.Data (which would put the master string in your mobile app); however, this is for convenience when quickly developing samples and is not recommended to ship these values in the production apps.  (Again, the principle of not putting your master key in the mobile app still stands for production scenarios.)
 
-Instead - use the Authentication provider of your choice.  And thoser Auth providers often will provide SDKs.  For example, you can ues either of the two Azure AD SDKs mentioned above (ADAL or MSAL).  Then AzureAuth of this project will work in tandem - you'll just need the access token that you will get back using the Authentication provider of your choice.
+Instead - use the Authentication provider of your choice.  And those Auth providers often will provide SDKs.  For example, you can ues either of the two Azure AD SDKs mentioned above (ADAL or MSAL).  Then AzureAuth of this project (Azure.iOS or Azure.Android) will work in tandem - you'll just need the access token that you will get back from the Authentication provider you used.
 
 Your code will look something like this:
 
@@ -118,10 +118,9 @@ AzureAuth.login(to: functionsUrl, with: .aad(accessToken: accessToken)) { respon
 }
 ```
 
+In the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click from the Github portal, create various Azure services.  You'll see a Function spin up in a couple minute - you can use that Function to either go Method A or B.  NOTE - at this point, you need to use the C# version (Not Javascript, not C# Script to get all the additional code).  There will be code pre-loaded for the Function to be used as a permissions broker similar to what was described in Method B.  (Note - if your ARM template fails for some reason, try deploying it again with all the same values you did the first time and without deleting anything.)
 
-Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click from the Github portal, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  NOTE - at this point, you need to use the C# version (Not Javascript, not C# Script).  There will be code pre-loaded for the Function to be used as a permissions broker as described in Method A or B.  (Note - if your ARM template fails for some reason, try deploying it again with all the same values you did the first time and without deleting anything.)
-
-Finally, there is a lot of code in the AzureData module that makes it convenient and easy to access and write data to your CosmosDB; there is also the ability to enable offline capabilities and cache data locally.
+Finally, there is a lot of code in the AzureData module that makes it convenient and easy to access and write data to your CosmosDB; there is also the ability to enable offline capabilities and cache data locally.  
 
 ---------
 
