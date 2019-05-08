@@ -1,5 +1,5 @@
 # CosmosDBFromSwift
-General Guidance around Accessing CosmosDB Securely From Swift
+General Guidance around Accessing CosmosDB Securely From a (Swift) iOS App 
 
 If you're developing a mobile app and looking through the CosmosDB Docs around security, you may notice that most of those documents seem to be referring to accessings CosmosDB from a web service.  You would be correct - most of those assume that you're accessing CosmosDB from a web service.
 
