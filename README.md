@@ -102,6 +102,23 @@ If you notice, there is a way to add the Master Key of your Function in Azure.Da
 
 Instead - use the Authentication provider of your choice.  And thoser Auth providers often will provide SDKs.  For example, you can ues either of the two Azure AD SDKs mentioned above (ADAL or MSAL).  Then AzureAuth of this project will work in tandem - you'll just need the access token that you will get back using the Authentication provider of your choice.
 
+Your code will look something like this:
+
+```
+import AzureAuth
+import AzureData
+import AzureMobile
+
+// Use MSAL SDK to login and get accessToken
+let accessToken: String = ""
+let functionsUrl = URL("FunctionsUrl")
+
+AzureAuth.login(to: functionsUrl, with: .aad(accessToken: accessToken)) { response in 
+    AzureData.configure(forAccountNamed: "documentDbName", withPermissionProvider: DefaultPermissionProvider(withBaseUrl: functionsUrl))
+}
+```
+
+
 Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click from the Github portal, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  NOTE - at this point, you need to use the C# version (Not Javascript, not C# Script).  There will be code pre-loaded for the Function to be used as a permissions broker as described in Method A or B.  (Note - if your ARM template fails for some reason, try deploying it again with all the same values you did the first time and without deleting anything.)
 
 Finally, there is a lot of code in the AzureData module that makes it convenient and easy to access and write data to your CosmosDB; there is also the ability to enable offline capabilities and cache data locally.
