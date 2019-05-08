@@ -41,7 +41,7 @@ Mobile app --> Middleware web app (Permission broker) -> CosmosDB
 
 This is described here: https://codemilltech.com/connecting-to-cosmos-without-conx-strings/
 
-///////////////////
+---------
 
 So where would these implementations be?
 
@@ -82,7 +82,7 @@ Method B)
 The example for Method B - would be this document:
 https://codemilltech.com/connecting-to-cosmos-without-conx-strings/
 
-/////////////////////////////////////////////////////////
+---------
 
 Templates to help speed up your development.
 AzureMobile is a project started by two Microsoft employees:
@@ -100,14 +100,15 @@ Instead - the package AzureAuth (which is included in both the iOS and Android S
 
 Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  Ie. Transfer data from CosmosDB to the Mobile app or simply use it as a permissions broker.
 
-
-///////////////////////////////////////////////////////
+---------
 
 I hope the above is helpful.
 
 Security is a big topic; enterprises should spend the appropriate time on this area of their projects and I often tell customers to work with a trusted consulting partner to do a full security audit on their projects.
 
+ ---------
  
+ Thanks to @naterickard and @colbylwilliams
 
 
 
