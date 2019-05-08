@@ -132,5 +132,5 @@ Security is a big topic; enterprises should spend the appropriate time on this a
  
  Thanks to @naterickard and @colbylwilliams for their advice and super clear explainations
 
-
+Edit: another great write up from a colleague of mine: https://github.com/adamhockemeyer/Azure-Functions---CosmosDB-ResourceToken-Broker
 
