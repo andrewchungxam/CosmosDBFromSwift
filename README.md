@@ -102,7 +102,7 @@ If you notice, there is a way to add the Master Key of your Function in Azure.Da
 
 Instead - the package AzureAuth (which is included in both the iOS and Android SDKs) enables authentication with Azure AD, Facebook, Google, Twitter, and Microsoft accounts. 
 
-Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  Ie. Transfer data from CosmosDB to the Mobile app or simply use it as a permissions broker.
+Then, in the Azure.Mobile link you'll notice there is an ARM template which allows you to with one click from the Github portal, create various Azure services.  You'll see a Function spun up in a couple minute - you can use that Function to either go Method A or B.  Ie. Transfer data from CosmosDB to the Mobile app or simply use it as a permissions broker as described in Method A or B.  (Note - if your ARM template fails for some reason, try deploying it again with all the same values you did the first time and without deleting anything.)
 
 ---------
 
